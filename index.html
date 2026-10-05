@@ -1,0 +1,517 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="manifest" href="/manifest.webmanifest"><meta name="theme-color" content="#0b0f14"><title>What's Happening? V21</title><style>
+body{margin:0;background:#07090d;color:#f5f7fb;font-family:Inter,system-ui,sans-serif}.wrap{max-width:1100px;margin:auto;padding:32px 20px 70px}.top{display:flex;justify-content:space-between}.brand{font-weight:900}.brand i{color:#9d8cff;font-style:normal}.live{font-size:11px;color:#64e09b}.hero{text-align:center;margin:70px auto 35px;max-width:760px}.tag{color:#b8aaff;font-size:11px;letter-spacing:.1em}.hero h1{font-size:58px;line-height:.98;letter-spacing:-.06em;margin:14px 0}.hero p{color:#8994a6;line-height:1.55}.btn{margin-top:20px;padding:15px 24px;border:0;border-radius:13px;background:#fff;font-weight:900;cursor:pointer}.status{text-align:center;color:#8994a6;min-height:24px}.card{background:#10151d;border:1px solid #202936;border-radius:18px;padding:20px;margin-top:16px}.summary{font-size:24px;font-weight:900}.sub{color:#9da7b7;font-size:13px;margin-top:7px}.item{display:grid;grid-template-columns:42px 1fr 100px;gap:12px;align-items:center;padding:15px 0;border-bottom:1px solid #202630}.item:last-child{border:0}.rank{width:34px;height:34px;background:#171d27;border-radius:9px;display:grid;place-items:center}.name{font-weight:850}.reason{font-size:11px;color:#8d98aa;margin-top:4px}.score{text-align:right;font-weight:900}.bad{color:#ff6175}.warn{color:#ffc45e}.blue{color:#62abff}.explain{font-size:11px;color:#c4ccd8;line-height:1.45;margin-top:7px}.meta{font-size:10px;color:#6f7a8d;margin-top:5px}@media(max-width:650px){.hero h1{font-size:42px}.item{grid-template-columns:35px 1fr}.score{text-align:left;grid-column:2}}.searchbox{display:flex;gap:8px;max-width:620px;margin:24px auto 8px}.searchbox input{flex:1;min-width:0;background:#10151d;border:1px solid #293342;border-radius:12px;padding:15px 16px;color:#fff;font-size:16px;outline:none}.searchbtn{border:0;border-radius:12px;padding:0 18px;background:#9d8cff;color:#08090d;font-weight:900;cursor:pointer}.searchresults{max-width:620px;margin:8px auto;text-align:left}.result{display:flex;align-items:center;justify-content:space-between;width:100%;box-sizing:border-box;text-align:left;font:inherit;padding:12px 14px;margin:7px 0;background:#10151d;border:1px solid #202936;border-radius:12px;cursor:pointer}.result:hover{border-color:#9d8cff}.result small{color:#8792a4}.assetcard{margin-top:18px;text-align:left}.assethead{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.assetscore{font-size:34px;font-weight:900}.pill{display:inline-block;margin-top:7px;padding:5px 8px;border-radius:7px;background:#171d27;color:#aeb8c8;font-size:10px;font-weight:800}
+.summary-stack{display:flex;flex-direction:column;gap:4px;line-height:1.08}
+.summary-stack>div{white-space:nowrap}
+.summary-number{display:inline-block;min-width:2ch}
+@media(max-width:600px){
+  .summary-stack{font-size:clamp(27px,7vw,38px);gap:6px}
+  .summary-stack>div{white-space:normal}
+}
+.clickable{cursor:pointer;transition:transform .15s,border-color .15s}.clickable:hover{transform:translateY(-1px);border-color:#4d5c73}.tap{font-size:10px;color:#7f8ca0;margin-top:8px}.detail{padding:24px}.back{border:0;background:#171d27;color:#cbd3df;border-radius:10px;padding:9px 13px;font-weight:800;cursor:pointer;margin-bottom:18px}.detailgrid{display:grid;grid-template-columns:1.3fr .7fr;gap:18px;margin-top:18px}.detailsection{background:#0c1118;border:1px solid #202936;border-radius:14px;padding:17px}.detailtitle{font-size:14px;font-weight:900;margin-bottom:10px}.projectdesc{font-size:12px;line-height:1.6;color:#aab4c4}.statrow{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid #1b222c;font-size:11px}.statrow:last-child{border:0}.statrow span:first-child{color:#7f8a9c}.statrow span:last-child{text-align:right;font-weight:800}.signal{padding:10px 0;border-bottom:1px solid #1b222c;font-size:12px;color:#c7cfdb}.signal:last-child{border:0}.nextcheck{margin-top:12px;color:#aeb8c7;font-size:11px;line-height:1.5}@media(max-width:700px){.detailgrid{grid-template-columns:1fr}}.btn:disabled{opacity:.55;cursor:wait}
+.checkgrid{display:grid;gap:10px;margin-top:12px}.checkcard{background:#111721;border:1px solid #252f3d;border-radius:10px;padding:12px}.checkhead{display:flex;justify-content:space-between;gap:10px;align-items:center}.checktitle{font-size:11px;font-weight:900;color:#d7deea}.checkstatus{font-size:9px;font-weight:900;color:#69e6a3}.checkbody{font-size:11px;color:#aeb8c7;line-height:1.55;margin-top:7px}.checkmetric{display:flex;justify-content:space-between;gap:12px;padding:4px 0}.checkmetric b{color:#e1e6ee}.checkmuted{color:#778398}.checknote{font-size:10px;color:#7f8ca0;margin-top:7px}.checklink{color:#a99aff;text-decoration:none;font-weight:800}@media(max-width:600px){.checkmetric{display:block}.checkmetric b{display:block;margin-top:2px}}
+
+
+.sigma-badge{display:inline-flex;align-items:center;gap:7px;margin:8px 0 4px;padding:6px 10px;border:1px solid #293244;border-radius:999px;background:#151b25;color:#c8d1df;font-size:14px}
+.sigma-value{font-weight:800;color:#9d8cff}.sigma-help{color:#8e9aab;font-size:13px}.sigma-explainer{color:#7f8ca0;font-size:10px;line-height:1.45;margin:-2px 0 5px}.sigma-explainer b{color:#aeb8c7}
+
+.news-item{padding:12px 0;border-bottom:1px solid #1b222c}
+.news-item:last-child{border:0}
+.news-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.news-title{font-size:12px;font-weight:800;line-height:1.35;color:#d6dce6}
+.news-meta{font-size:10px;color:#748095;margin-top:5px}
+.news-source{font-size:10px;color:#9d8cff;font-weight:800;white-space:nowrap}
+.news-relevance{font-size:10px;font-weight:800;margin-top:7px}
+.news-relevance.high{color:#ff8b8b}.news-relevance.medium{color:#f1c75b}.news-relevance.low{color:#7f9fca}
+.catalyst{margin-top:12px;padding:12px;border-radius:10px;background:#111721;border:1px solid #252f3d;font-size:11px;line-height:1.5;color:#b9c3d1}
+.corr-card{margin-top:12px;padding:13px;border-radius:10px;background:#111721;border:1px solid #252f3d}.corr-label{font-size:11px;font-weight:900;letter-spacing:.03em}.corr-text{font-size:11px;color:#aeb8c7;line-height:1.5;margin-top:6px}.unexplained{color:#ff7b89}.partial{color:#f1c75b}.explained{color:#69e6a3}.next-list{margin-top:8px;color:#b9c3d1;line-height:1.6;font-size:11px}
+.alertbar{display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;margin-top:14px}.alertbtn{padding:11px 16px;border-radius:11px;border:1px solid #303a4b;background:#151b25;color:#e8edf5;font-weight:800;cursor:pointer}.alertbtn.on{border-color:#69e6a3;color:#69e6a3}.alertselect{padding:10px 12px;border-radius:10px;background:#10151d;border:1px solid #303a4b;color:#dce3ed}.alertfeed{margin-top:16px}.alertrow{padding:12px;border:1px solid #283242;background:#111721;border-radius:12px;margin-top:8px}.alertrow.major{border-color:#7f3641}.alertrow.sig{border-color:#725c2a}.alertrow .atitle{font-weight:900}.alertrow .adesc{font-size:11px;color:#aeb8c7;margin-top:4px;line-height:1.45}.alertmeta{font-size:10px;color:#748095;margin-top:5px}
+</style></head><body><div class="wrap"><div class="top"><div class="brand">WHAT'S <i>HAPPENING?</i></div><div class="live">● V21 INTELLIGENCE ENGINE</div></div><div class="hero"><div class="tag">HISTORICAL ANOMALY DETECTION</div><h1>What changed?</h1><p>Scan the top 100 — or search any crypto you want to investigate.</p>
+<div class="searchbox"><input id="ticker" placeholder="Search BTC, XRP, EDEL, Solana…" autocomplete="off" onkeydown="if(event.key==='Enter')searchAsset()"><button class="searchbtn" onclick="searchAsset()">SEARCH</button></div>
+<div id="searchResults"></div>
+<button class="btn" onclick="scan()">⚡ SCAN TOP 100</button>
+<div class="alertbar"><button id="alertBtn" class="alertbtn" onclick="toggleAlerts()">🔔 Enable anomaly alerts</button><select id="alertSensitivity" class="alertselect"><option value="major">Major only · ≥4σ + corroboration</option><option value="significant">Significant · ≥3σ + corroboration</option><option value="watch">Watch · ≥2σ</option></select></div>
+<div id="alertStatus" class="status"></div>
+<div id="alertFeed" class="alertfeed"></div></div><div class="status" id="status">Ready.</div><div id="out"></div></div><script>
+
+const ALERT_KEY='whatsHappeningAlertsV1';
+let alertTimer=null, alertRunning=false;
+function alertCfg(){return JSON.parse(localStorage.getItem(ALERT_KEY)||'{}')}
+function saveAlertCfg(c){localStorage.setItem(ALERT_KEY,JSON.stringify(c))}
+function alertThreshold(){return document.getElementById('alertSensitivity')?.value||'major'}
+function notificationSupported(){return typeof window!=='undefined' && 'Notification' in window}
+function renderAlertStatus(){const c=alertCfg(),b=document.getElementById('alertBtn');if(!b)return;b.classList.toggle('on',!!c.enabled);b.textContent=c.enabled?'🔔 Alerts enabled':'🔔 Enable anomaly alerts';const st=document.getElementById('alertStatus');if(!st)return;if(c.enabled){const mode=notificationSupported()&&Notification.permission==='granted'?'Browser notifications on.':'In-app alerts on. Browser notifications require a supported/installed web app.';st.textContent=`Watching the Top 100 for multi-signal anomalies. ${mode} ${c.cloudPush?'Cloud push alerts armed — you can receive alerts when the app is closed.':'Checks every 5 minutes while this page is open. Cloud push is available when the app is hosted over HTTPS.'}`}else st.textContent='Alerts are off.'}
+let pushRegistration=null;
+function urlBase64ToUint8Array(base64String){const padding='='.repeat((4-base64String.length%4)%4);const base64=(base64String+padding).replace(/-/g,'+').replace(/_/g,'/');const raw=atob(base64);return Uint8Array.from([...raw].map(c=>c.charCodeAt(0)));}
+async function setupPush(){
+  if(location.protocol==='file:' || !('serviceWorker' in navigator) || !('PushManager' in window)) return false;
+  try{
+    pushRegistration=await navigator.serviceWorker.register('/sw.js');
+    const kr=await fetch('/api/push/public-key',{cache:'no-store'}); if(!kr.ok)return false; const kd=await kr.json(); if(!kd.enabled||!kd.publicKey)return false;
+    let sub=await pushRegistration.pushManager.getSubscription();
+    if(!sub) sub=await pushRegistration.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:urlBase64ToUint8Array(kd.publicKey)});
+    const sr=await fetch('/api/push/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.assign({},sub.toJSON(),{sensitivity:alertThreshold()}))});
+    return sr.ok;
+  }catch(e){return false;}
+}
+async function toggleAlerts(){
+  const c=alertCfg();
+  if(!c.enabled){
+    c.enabled=true;c.sensitivity=alertThreshold();c.lastRun=0;
+    if(notificationSupported() && Notification.permission!=='granted'){
+      try{const perm=await Notification.requestPermission();c.notifications=perm==='granted'}catch(e){c.notifications=false}
+    } else c.notifications=notificationSupported()&&Notification.permission==='granted';
+    saveAlertCfg(c);renderAlertStatus();
+    const cloudPush=await setupPush(); c.cloudPush=cloudPush; saveAlertCfg(c);
+    renderAlertStatus(); runAlertCheck(); if(alertTimer)clearInterval(alertTimer); alertTimer=setInterval(runAlertCheck,300000);
+  }else{c.enabled=false;saveAlertCfg(c);renderAlertStatus();if(alertTimer)clearInterval(alertTimer);alertTimer=null;}
+}
+function pushAlert(a, historical=false){
+  const feed=document.getElementById('alertFeed'); const cls=a.level==='MAJOR'?'major':'sig';
+  feed.insertAdjacentHTML('afterbegin',`<div class="alertrow ${cls}"><div class="atitle">${a.icon} ${a.coin.name} (${a.coin.symbol.toUpperCase()}) · ${a.level} ANOMALY</div><div class="adesc">${a.summary}</div><div class="alertmeta">Score ${a.score}/100 · ${new Date().toLocaleTimeString([], {hour:'numeric',minute:'2-digit'})} · Tap the asset search above to investigate.</div></div>`);
+  while(feed.children.length>6)feed.removeChild(feed.lastChild);
+  try{if(!historical&&notificationSupported()&&Notification.permission==='granted'){new Notification(`${a.icon||'🚨'} ${a.coin.name}: ${a.level} anomaly`,{body:a.summary});}}catch(e){}
+}
+function classifyAlert(score,metrics,sensitivity){
+  const corroboration=(Math.abs(metrics.h1||0)>=2 && (Math.abs(metrics.volume_z||0)>=2 || Math.abs(metrics.turnover_z||0)>=2));
+  if(sensitivity==='watch' && score>=30)return {level:'WATCH',icon:'🟡'};
+  if(sensitivity!=='watch' && score>=75 && (corroboration || Math.abs(metrics.volume_z||0)>=3))return {level:'SIGNIFICANT',icon:'🟠'};
+  if(sensitivity==='major' && score>=85 && corroboration && Math.abs(metrics.volume_z||0)>=3.5)return {level:'MAJOR',icon:'🚨'};
+  if(sensitivity==='significant' && score>=75 && corroboration)return {level:'SIGNIFICANT',icon:'🟠'};
+  return null;
+}
+async function runAlertCheck(){
+  const c=alertCfg(); if(!c.enabled)return;
+  try{
+    let data;
+    if(location.protocol==='file:'){
+      const r=await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=1h,24h,7d',{cache:'no-store'}); if(!r.ok)throw Error('market feed'); data=await r.json();
+    }else{const r=await fetch('/api/scan',{cache:'no-store'});if(!r.ok)throw Error('scan');data=(await r.json()).results.map(x=>({...x.coin,analysis:x.analysis}));}
+    const arr=data.map(x=>x.analysis?x:{...x,analysis:quickAlertAnalysis(x,data)}).sort((a,b)=>(b.analysis?.score||0)-(a.analysis?.score||0));
+    const top=arr.slice(0,8); const threshold=c.sensitivity||'major';
+    for(const x of top){const a=x.analysis||{};const m=a.metrics||{};const hit=classifyAlert(a.score||0,m,threshold);if(!hit)continue;const key=`${x.id}:${hit.level}`;const now=Date.now();c.sent=c.sent||{};if(c.sent[key]&&now-c.sent[key]<3600000)continue;c.sent[key]=now;saveAlertCfg(c);pushAlert({coin:x,score:a.score,level:hit.level,icon:hit.icon,summary:(a.signals||[]).slice(0,3).join(' · ')||'Multiple unusual market signals detected.'});}
+    c.lastRun=Date.now();saveAlertCfg(c);document.getElementById('alertStatus').textContent=`Last checked ${new Date(c.lastRun).toLocaleTimeString([], {hour:'numeric',minute:'2-digit'})} · monitoring ${Math.min(100,data.length)} assets.`;
+  }catch(e){document.getElementById('alertStatus').textContent='Alert check unavailable right now; will retry automatically.'}
+}
+function quickAlertAnalysis(x,arr){
+  const vals=k=>arr.map(y=>+(y[k]||0)).filter(Number.isFinite), z=(v,a)=>{if(a.length<3)return 0;const m=a.reduce((s,n)=>s+n,0)/a.length,sd=Math.sqrt(a.reduce((s,n)=>s+(n-m)**2,0)/a.length);return sd?(v-m)/sd:0};
+  const volume=+(x.total_volume||0),cap=+(x.market_cap||0),turn=cap?volume/cap:0; const turns=arr.map(y=>+(y.market_cap?y.total_volume/y.market_cap:0));
+  const m={h1:z(+(x.price_change_percentage_1h_in_currency||0),vals('price_change_percentage_1h_in_currency')),volume_z:z(volume,vals('total_volume')),turnover_z:z(turn,turns),h24:z(+(x.price_change_percentage_24h_in_currency||0),vals('price_change_percentage_24h_in_currency'))};
+  let score=0; if(Math.abs(m.h1)>=2)score+=Math.min(30,Math.round(Math.abs(m.h1)*6)); if(Math.abs(m.volume_z)>=2)score+=Math.min(40,Math.round(Math.abs(m.volume_z)*8)); if(Math.abs(m.turnover_z)>=2)score+=Math.min(30,Math.round(Math.abs(m.turnover_z)*8));
+  const sig=[]; if(Math.abs(m.h1)>=2)sig.push(`1h move ${m.h1>=0?'+':''}${m.h1.toFixed(1)}σ vs market`); if(Math.abs(m.volume_z)>=2)sig.push(`Volume ${m.volume_z>=0?'+':''}${m.volume_z.toFixed(1)}σ vs market`); if(Math.abs(m.turnover_z)>=2)sig.push(`Turnover ${m.turnover_z>=0?'+':''}${m.turnover_z.toFixed(1)}σ vs market`);
+  return {score:Math.min(100,score),metrics:m,signals:sig};
+}
+async function loadCloudAlerts(){try{const r=await fetch('/api/alerts/recent?limit=12',{cache:'no-store'});if(!r.ok)return;const d=await r.json();for(const a of (d.alerts||[]).slice().reverse())pushAlert(a,true);}catch(e){}}
+(function initAlerts(){const c=alertCfg();if(c.enabled){document.getElementById('alertSensitivity').value=c.sensitivity||'major';renderAlertStatus();if(location.protocol!=='file:' && c.cloudPush){loadCloudAlerts();}else{runAlertCheck();alertTimer=setInterval(runAlertCheck,300000)}}else renderAlertStatus();document.getElementById('alertSensitivity')?.addEventListener('change',()=>{const q=alertCfg();q.sensitivity=alertThreshold();saveAlertCfg(q)});})();
+
+async function searchAsset(){
+  const q=document.getElementById("ticker").value.trim();
+  const sr=document.getElementById("searchResults");
+  if(!q){sr.innerHTML="";return}
+  sr.innerHTML='<div class="result"><small>Searching…</small></div>';
+  try{
+    if(location.protocol==="file:"){
+      const r=await fetch("https://api.coingecko.com/api/v3/search?query="+encodeURIComponent(q));
+      if(!r.ok)throw Error("Search failed ("+r.status+")");
+      const d=await r.json();
+      sr.innerHTML=(d.coins||[]).slice(0,8).map(c=>`<button type="button" class="result" data-asset-id="${encodeURIComponent(c.id)}"><div><b>${c.name}</b> <small>${c.symbol.toUpperCase()}</small></div><small>${c.market_cap_rank?"Rank #"+c.market_cap_rank:""}</small></button>`).join("")||'<div class="result"><small>No matching crypto found.</small></div>';
+      sr.querySelectorAll('[data-asset-id]').forEach(el=>el.addEventListener('click',()=>inspect(decodeURIComponent(el.dataset.assetId))));
+    }else{
+      const r=await fetch("/api/search?q="+encodeURIComponent(q)); if(!r.ok)throw Error("Search failed");
+      const d=await r.json();
+      sr.innerHTML=(d.results||[]).map(c=>`<button type="button" class="result" data-asset-id="${encodeURIComponent(c.id)}"><div><b>${c.name}</b> <small>${c.symbol.toUpperCase()}</small></div><small>${c.market_cap_rank?"Rank #"+c.market_cap_rank:""}</small></button>`).join("")||'<div class="result"><small>No matching crypto found.</small></div>';
+      sr.querySelectorAll('[data-asset-id]').forEach(el=>el.addEventListener('click',()=>inspect(decodeURIComponent(el.dataset.assetId))));
+    }
+  }catch(e){sr.innerHTML='<div class="result"><small>'+e.message+'</small></div>'}
+}
+function renderNewsItems(news,c){
+  const newsList=document.getElementById("newsList");
+  if(!newsList) return;
+  const now=Date.now();
+  const timed=news.map(n=>({...n,ts:Date.parse(n.pub)||0})).filter(n=>n.ts&&n.ts<=now);
+  const recent=timed.filter(n=>now-n.ts<=6*60*60*1000).sort((a,b)=>b.ts-a.ts);
+  let status="UNEXPLAINED", cls="unexplained", text="No relevant public headline was found within the last 6 hours that plausibly explains the anomaly.";
+  if(recent.length){
+    const mins=Math.round((now-recent[0].ts)/60000);
+    if(mins<=60){status="POSSIBLE CATALYST · STRONG TIMING";cls="explained";text=`A relevant headline appeared about ${mins} minutes before the current observation. The timing is notable, but this does not prove causation.`;}
+    else {status="PARTIALLY EXPLAINED";cls="partial";text=`A relevant headline appeared about ${Math.round(mins/60)} hours before the current observation. It may provide context, but the anomaly may not be fully explained.`;}
+  } else if(c.score<50){status="NO MATERIAL NEWS CATALYST";cls="partial";text="No recent matching headline was found; the current signal is not strong enough to classify as an unexplained major anomaly.";}
+  if(news.length){
+    newsList.innerHTML=news.map(n=>{
+      const when=n.pub?new Date(n.pub).toLocaleString([],{month:"short",day:"numeric",hour:"numeric",minute:"2-digit"}):"Recent";
+      return `<div class="news-item"><div class="news-head"><div class="news-title">${n.title}</div><div class="news-source">${n.source}</div></div><div class="news-meta">${when}</div><div class="news-relevance high">DIRECT · ${c.symbol}</div></div>`;
+    }).join("");
+  }else{
+    newsList.innerHTML='<div class="projectdesc">No matching current headlines were returned from the live sources.</div>';
+  }
+  const next=c.score>=50?"Large wallet activity · exchange inflows/outflows · CEX/DEX spreads · derivatives positioning · social activity":"Continue collecting baseline observations and watch for new deviations.";
+  newsList.insertAdjacentHTML("afterend",`<div class="corr-card"><div class="corr-label ${cls}">🧠 ${status}</div><div class="corr-text">${text}</div><div class="next-list"><b>What to investigate next:</b><br>${next}</div></div>`);
+}
+
+async function loadChecks(id){
+  const box=document.getElementById("checkResults");
+  if(!box) return;
+  box.innerHTML='<div class="checkcard"><div class="checkbody">Loading live supporting data…</div></div>';
+  try{
+    let d;
+    if(location.protocol==="file:"){
+      const coinR=await fetch(`https://api.coingecko.com/api/v3/coins/${encodeURIComponent(id)}?localization=false&tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false`,{cache:"no-store"});
+      if(!coinR.ok) throw Error("Project data unavailable");
+      const coin=await coinR.json();
+      const md=coin.market_data||{}, total=+(md.total_volume?.usd||0), price=+(md.current_price?.usd||0);
+      const tickR=await fetch(`https://api.coingecko.com/api/v3/coins/${encodeURIComponent(id)}/tickers?include_exchange_logo=false&depth=true&page=1`,{cache:"no-store"});
+      const td=tickR.ok?await tickR.json():{tickers:[]}, tickers=td.tickers||[];
+      const venues={}, spreads=[], prices=[];
+      tickers.forEach(t=>{const n=t.market?.name||"Unknown venue",v=+(t.converted_volume?.usd||t.volume||0),last=+(t.converted_last?.usd||t.last||0);if(v)venues[n]=(venues[n]||0)+v;if(t.bid_ask_spread_percentage!=null)spreads.push(+t.bid_ask_spread_percentage);if(last)prices.push(last)});
+      const vs=Object.entries(venues).sort((a,b)=>b[1]-a[1]).slice(0,5).map(([name,volume])=>({name,volume}));
+      d={volume_liquidity:{market_volume_24h:total,top_venues:vs,top_venue_share:vs[0]&&total?vs[0].volume/total*100:null},venue_spreads:{reported_bid_ask_avg:spreads.length?spreads.reduce((a,b)=>a+b,0)/spreads.length:null,reported_bid_ask_max:spreads.length?Math.max(...spreads):null,observed_price_dispersion:prices.length>1?(Math.max(...prices)-Math.min(...prices))/((Math.max(...prices)+Math.min(...prices))/2)*100:null,ticker_count:tickers.length},wallet_activity:{available:false,message:"No wallet feed returned yet."},social:{}};
+
+      // REAL Bitcoin wallet/transfer layer: BTC is a native chain, so it does not
+      // appear in coin.platforms. Mempool.space provides recent confirmed blocks
+      // and transaction outputs without requiring an API key.
+      if((coin.symbol||"").toLowerCase()==="btc" || id==="bitcoin") {
+        try{
+          const tipR=await fetch("https://mempool.space/api/blocks/tip/height",{cache:"no-store"});
+          if(tipR.ok){
+            const tip=+(await tipR.text()).trim();
+            const br=await fetch(`https://mempool.space/api/blocks/${tip}`,{cache:"no-store"});
+            if(br.ok){
+              const blocks=(await br.json()).slice(0,3); let txCount=0,largeCount=0,largest=0,totalLarge=0; const flows=[];
+              for(const b of blocks){
+                if(!b.id)continue; const tr=await fetch(`https://mempool.space/api/block/${b.id}/txs/0`,{cache:"no-store"}); if(!tr.ok)continue;
+                for(const tx of await tr.json()){
+                  txCount++; for(const v of (tx.vout||[])){const btc=(+(v.value||0))/1e8,usd=btc*price;if(Number.isFinite(usd)&&usd>=100000){largeCount++;totalLarge+=usd;largest=Math.max(largest,usd);flows.push({usd,btc,from:"Bitcoin transaction",to:v.scriptpubkey_address||"Unlabeled address",date:b.timestamp?new Date(b.timestamp*1000).toISOString():""});}}
+                }
+              }
+              if(txCount){flows.sort((a,b)=>b.usd-a.usd);d.wallet_activity={available:true,chain:"Bitcoin",sample_transfers:txCount,large_transfers:largeCount,largest_transfer_usd:largest,total_large_transfer_usd:totalLarge,recent_large_transfers:flows.slice(0,5),message:"Observed large Bitcoin outputs in recent confirmed blocks. These are transfer observations, not proof of whale intent, ownership, or exchange flow."};}
+            }
+          }
+        }catch(e){}
+      }
+
+      // REAL wallet layer for XRP: XRPSCAN rich-list + validated account history.
+      if((coin.symbol||"").toLowerCase()==="xrp" || id==="ripple"){
+        try{
+          const br=await fetch("https://api.xrpscan.com/api/v1/balances",{cache:"no-store"});
+          if(br.ok){
+            const holders=(await br.json()||[]).slice(0,12), cutoff=Date.now()-86400000;
+            let txCount=0,largeCount=0,largest=0,totalLarge=0,named=0; const flows=[];
+            for(const h of holders){
+              try{
+                const tr=await fetch(`https://api.xrpscan.com/api/v1/account/${h.account}/transactions`,{cache:"no-store"});
+                if(!tr.ok)continue; const td=await tr.json();
+                for(const t of (td.transactions||[])){
+                  const ts=Date.parse(t.date||""); if(ts&&ts<cutoff)continue;
+                  const amt=t.meta?.delivered_amount||t.Amount; let xrp=0;
+                  if(typeof amt==="object" && (amt.currency==="XRP"||!amt.currency))xrp=+(amt.value||0)/1e6; else xrp=(+amt||0)/1e6;
+                  if(!xrp)continue; txCount++; const usd=xrp*price;
+                  if(usd>=100000){largeCount++;totalLarge+=usd;largest=Math.max(largest,usd);flows.push({xrp,usd,from:t.AccountName?.name||t.Account||"Wallet",to:t.DestinationName?.name||t.Destination||"Wallet",fromAddress:t.Account||"",toAddress:t.Destination||"",date:t.date||""});}
+                  if(t.AccountName?.verified||t.DestinationName?.verified)named++;
+                }
+              }catch(e){}
+            }
+            flows.sort((a,b)=>b.usd-a.usd);
+            if(txCount||largeCount)d.wallet_activity={available:true,chain:"XRP Ledger",sample_holders:holders.length,sample_transfers:txCount,large_transfers:largeCount,largest_transfer_usd:largest,total_large_transfer_usd:totalLarge,named_exchange_transfers:named,recent_large_transfers:flows.slice(0,5),message:"Observed validated XRP payments involving a sample of high-balance accounts. Large transfers are not proof of whale intent or buy/sell direction."};
+          }
+        }catch(e){}
+      }
+
+      // REAL EVM wallet layer: CoinGecko supplies contract addresses; Blockscout supplies transfers.
+      if(!d.wallet_activity.available){
+        const explorerMap={ethereum:"https://eth.blockscout.com",base:"https://base.blockscout.com",arbitrum_one:"https://arbitrum.blockscout.com",optimistic_ethereum:"https://optimism.blockscout.com",polygon_pos:"https://polygon.blockscout.com",gnosis:"https://gnosis.blockscout.com",celo:"https://celo.blockscout.com",zksync:"https://zksync.blockscout.com",linea:"https://linea.blockscout.com",scroll:"https://scroll.blockscout.com"};
+        for(const [chain,address] of Object.entries(coin.platforms||{})){
+          const host=explorerMap[chain]; if(!host||!address||!address.startsWith("0x")) continue;
+          try{
+            const tr=await fetch(`${host}/api/v2/tokens/${address}/transfers?type=ERC-20`,{cache:"no-store"});
+            if(!tr.ok) continue; const j=await tr.json(); const items=j.items||[]; let large=[];
+            for(const it of items){const raw=it.total?.value??it.value; const dec=it.total?.decimals??it.decimals; const units=+raw/(10**(+dec||0)); const usd=units*price;if(Number.isFinite(usd)&&usd>=100000)large.push({usd,from:it.from?.name||it.from?.ens_domain||it.from?.hash||it.from?.address_hash||"Wallet",to:it.to?.name||it.to?.ens_domain||it.to?.hash||it.to?.address_hash||"Wallet",fromAddress:it.from?.hash||it.from?.address_hash||"",toAddress:it.to?.hash||it.to?.address_hash||"",date:it.timestamp||""});}
+            if(items.length){large.sort((a,b)=>b.usd-a.usd);d.wallet_activity={available:true,chain,sample_transfers:items.length,large_transfers:large.length,largest_transfer_usd:large[0]?.usd||0,total_large_transfer_usd:large.reduce((a,b)=>a+b.usd,0),recent_large_transfers:large.slice(0,5),message:"Observed recent ERC-20 transfer events from a public chain explorer. These are transfer events, not proof of whale intent or exchange flow."};break;}
+          }catch(e){}
+        }
+      }
+
+      // REAL social/developer layer: official repos first, then GitHub discovery;
+      // Reddit falls back to a project-name search when no subreddit is linked.
+      let repos=(coin.links?.repos_url?.github||[]).filter(Boolean).slice(0,5);
+      const queries=[]; if(coin.name)queries.push(`"${coin.name}" crypto`); if(coin.symbol&&coin.symbol.toLowerCase()!==coin.name?.toLowerCase())queries.push(`"${coin.symbol}" crypto blockchain`);
+      if(!repos.length){
+        for(const q of queries){try{const rr=await fetch(`https://api.github.com/search/repositories?q=${encodeURIComponent(q)}&sort=stars&order=desc&per_page=8`,{headers:{Accept:"application/vnd.github+json","User-Agent":"WhatsHappening/12"},cache:"no-store"});if(rr.ok){const rd=await rr.json();for(const x of (rd.items||[])){const u=x.html_url;if(u&&!repos.includes(u))repos.push(u);if(repos.length>=5)break;}}}catch(e){} if(repos.length>=5)break;}
+      }
+      let ghStars=0,ghForks=0,ghCommits=0,ghRepos=0,repoNames=[];
+      for(const repo of repos.slice(0,5)){try{const m=repo.match(/github\.com\/([^/]+\/[^/]+)/);if(!m)continue;const slug=m[1].replace(/\.git$/,'');const rr=await fetch(`https://api.github.com/repos/${slug}`,{headers:{Accept:"application/vnd.github+json","User-Agent":"WhatsHappening/12"},cache:"no-store"});if(!rr.ok)continue;const rd=await rr.json();ghRepos++;repoNames.push(rd.full_name||slug);ghStars+=+(rd.stargazers_count||0);ghForks+=+(rd.forks_count||0);const since=new Date(Date.now()-28*86400000).toISOString();const cr=await fetch(`https://api.github.com/repos/${slug}/commits?since=${encodeURIComponent(since)}&per_page=100`,{headers:{Accept:"application/vnd.github+json","User-Agent":"WhatsHappening/12"},cache:"no-store"});if(cr.ok){const cd=await cr.json();ghCommits+=Array.isArray(cd)?cd.length:0;}}catch(e){}}
+      let redditPosts=null,redditSub=null;
+      try{const sub=(coin.links?.subreddit_url||"").match(/reddit\.com\/r\/([^/]+)/i)?.[1];const rss=sub?`https://www.reddit.com/r/${sub}/new.rss`:`https://www.reddit.com/search.rss?q=${encodeURIComponent(coin.name||coin.symbol)}&sort=new&t=day`;const rr=await fetch(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rss)}`,{cache:"no-store"});if(rr.ok){const rd=await rr.json();if(rd.status==="ok"){const cutoff=Date.now()-86400000;redditPosts=(rd.items||[]).filter(x=>(Date.parse(x.pubDate)||0)>=cutoff).length;redditSub=sub||null;}}}catch(e){}
+      d.social={available:!!(ghRepos||redditPosts!=null),github_stars:ghRepos?ghStars:null,github_forks:ghRepos?ghForks:null,github_repos:ghRepos||null,github_commits_4_weeks:ghRepos?ghCommits:null,github_repo_names:repoNames,reddit_posts_24h:redditPosts,reddit_subreddit:redditSub,telegram_link:(coin.links?.telegram_channel_identifier||coin.links?.telegram_channel_url)||null,message:(ghRepos||redditPosts!=null)?"Live public GitHub/Reddit activity. GitHub discovery uses project-name/symbol search when no official repository link is available.":"No verified public developer/community activity source returned data for this project."};
+    }else{
+      const r=await fetch("/api/checks/"+encodeURIComponent(id),{cache:"no-store"});if(!r.ok)throw Error("Supporting data unavailable");d=await r.json();
+    }
+    const money=n=>typeof n==="number"?new Intl.NumberFormat("en-US",{notation:"compact",maximumFractionDigits:2}).format(n):"—";
+    const pct=n=>typeof n==="number"?n.toFixed(2)+"%":"—";
+    const vl=d.volume_liquidity||{},vs=d.venue_spreads||{},wa=d.wallet_activity||{},so=d.social||{};
+    const venueRows=(vl.top_venues||[]).map(v=>`<div class="checkmetric"><span>${v.name}</span><b>$${money(v.volume)}</b></div>`).join("")||'<span class="checkmuted">Venue breakdown unavailable.</span>';
+    const num=n=>typeof n==="number"?new Intl.NumberFormat("en-US",{notation:"compact",maximumFractionDigits:2}).format(n):"—";
+    const social=[];
+    if(so.github_stars!=null)social.push(["GitHub stars",so.github_stars]);
+    if(so.github_forks!=null)social.push(["GitHub forks",so.github_forks]);
+    if(so.github_commits_4_weeks!=null)social.push(["GitHub commits (4w)",so.github_commits_4_weeks]);
+    if(so.github_repos!=null)social.push(["GitHub repos checked",so.github_repos]);
+    if(so.reddit_posts_24h!=null)social.push([`Reddit posts (24h)${so.reddit_subreddit?` · r/${so.reddit_subreddit}`:""}`,so.reddit_posts_24h]);
+    const socialHtml=social.map(x=>`<div class="checkmetric"><span>${x[0]}</span><b>${num(+x[1])}</b></div>`).join("")||'<span class="checkmuted">No public social/developer activity source returned data for this project.</span>';
+    const devCommits=Number(so.github_commits_4_weeks||0);
+    const devLabel=so.github_commits_4_weeks==null?"INSUFFICIENT DATA":devCommits>=50?"HIGH":devCommits>=15?"ELEVATED":devCommits>0?"ACTIVE":"QUIET";
+    const reddit24=Number(so.reddit_posts_24h||0);
+    const socialLabel=so.reddit_posts_24h==null?"INSUFFICIENT DATA":reddit24>=25?"ELEVATED":reddit24>0?"ACTIVE":"QUIET";
+    const isExchangeLabel=v=>{const z=String(v||"").toLowerCase();return /(binance|coinbase|kraken|bitstamp|bitfinex|okx|bybit|upbit|bithumb|kucoin|gate\.io|mexc|crypto\.com|gemini|bitget|htx|huobi|poloniex)/i.test(z)};
+    const classified=(wa.recent_large_transfers||[]).map(x=>{const f=isExchangeLabel(x.from),t=isExchangeLabel(x.to);return {...x,type:f&&t?"Exchange → exchange":f?"Exchange → external":t?"External → exchange":"Wallet → wallet"};});
+    const counts=classified.reduce((a,x)=>{a[x.type]=(a[x.type]||0)+1;return a;},{});
+    const exchangeIn=classified.filter(x=>x.type==="External → exchange").reduce((a,x)=>a+x.usd,0);
+    const exchangeOut=classified.filter(x=>x.type==="Exchange → external").reduce((a,x)=>a+x.usd,0);
+    const walletRows=wa.available?`<div class="checkmetric"><span>Network</span><b>${wa.chain}</b></div><div class="checkmetric"><span>Recent transfers sampled</span><b>${num(wa.sample_transfers)}</b></div><div class="checkmetric"><span>Large transfers ≥ $100K</span><b>${num(wa.large_transfers)}</b></div><div class="checkmetric"><span>Largest observed</span><b>$${num(wa.largest_transfer_usd)}</b></div><div class="checkmetric"><span>Total large-transfer value</span><b>$${num(wa.total_large_transfer_usd)}</b></div>${classified.length?`<div class="checkmetric"><span>External → exchange</span><b>$${num(exchangeIn)}</b></div><div class="checkmetric"><span>Exchange → external</span><b>$${num(exchangeOut)}</b></div>`:""}<div class="checknote">${wa.message}</div>`:`${wa.message||"No compatible on-chain wallet feed returned data for this asset."}<div class="checknote">No whale-flow claim is made without a compatible on-chain source.</div>`;
+    const flowRows=classified.map(x=>`<div class="checkmetric"><span><small style="display:block;opacity:.7">${x.type}</small>${x.from} → ${x.to}</span><b>$${num(x.usd)}</b></div>`).join("");
+    const walletInterpretation=wa.available?(classified.some(x=>x.type==="External → exchange")||classified.some(x=>x.type==="Exchange → external")?`<div class="checknote"><b>What it means:</b> Some large transfers involve identified exchange addresses. That can indicate movement into or out of trading venues, but it does not establish buying, selling, or whale intent.</div>`:`<div class="checknote"><b>What it means:</b> Large transfers were observed, but the sampled counterparties are not sufficiently identified to infer exchange inflows, outflows, or whale intent.</div>`):"";
+    box.innerHTML=`
+      <div class="checkcard"><div class="checkhead"><div class="checktitle">Exchange volume & liquidity</div><div class="checkstatus">LIVE</div></div><div class="checkbody"><div class="checkmetric"><span>24h market volume</span><b>$${money(vl.market_volume_24h)}</b></div>${venueRows}<div class="checknote">Top venue represents ${pct(vl.top_venue_share)} of reported market volume. This is a concentration signal, not a liquidity score.</div></div></div>
+      <div class="checkcard"><div class="checkhead"><div class="checktitle">CEX / DEX spreads & price dispersion</div><div class="checkstatus">LIVE</div></div><div class="checkbody"><div class="checkmetric"><span>Avg reported bid/ask spread</span><b>${pct(vs.reported_bid_ask_avg)}</b></div><div class="checkmetric"><span>Widest reported spread</span><b>${pct(vs.reported_bid_ask_max)}</b></div><div class="checkmetric"><span>Observed venue price dispersion</span><b>${pct(vs.observed_price_dispersion)}</b></div><div class="checknote">Observed across available exchange tickers. DEX-specific coverage depends on the provider's ticker set.</div></div></div>
+      <div class="checkcard"><div class="checkhead"><div class="checktitle">Large wallet activity</div><div class="checkstatus" style="color:${wa.available?'#69e6a3':'#f1c75b'}">${wa.available?'LIVE':'NOT AVAILABLE'}</div></div><div class="checkbody">${walletRows}${walletInterpretation}${flowRows?`<div style="margin-top:8px"><div class="checknote">Largest recent transfers · classified where counterparties are identifiable</div>${flowRows}</div>`:""}</div></div>
+      <div class="checkcard"><div class="checkhead"><div class="checktitle">Project / social activity</div><div class="checkstatus" style="color:${so.available===false?'#f1c75b':'#69e6a3'}">${so.available===false?'NOT AVAILABLE':'LIVE'}</div></div><div class="checkbody"><div class="checkmetric"><span>Developer activity · 4w GitHub commits</span><b>${devLabel}</b></div><div class="checkmetric"><span>Community activity · Reddit posts (24h)</span><b>${socialLabel}</b></div>${socialHtml}<div class="checknote"><b>What it means:</b> Developer activity is based on recent public GitHub commits; community activity is based on public Reddit posts when available. These are activity indicators, not sentiment or price predictions.</div><div class="checknote">X follower counts are intentionally not shown. Sources are only reported when live public data is returned.</div></div></div>`;
+  }catch(e){box.innerHTML=`<div class="checkcard"><div class="checkbody">Supporting data could not be reached right now. The anomaly score remains based on the market signals above.<div class="checknote">${e.message}</div></div></div>`}
+}
+
+async function loadNews(name,symbol){
+  // V8.4: use multiple established crypto RSS feeds through RSS2JSON.
+  // This works when index.html is opened directly on iPhone and does not
+  // require a backend or a paid API key.
+  const feeds=[
+    ["CoinDesk","https://www.coindesk.com/arc/outboundfeeds/rss/"],
+    ["Cointelegraph","https://cointelegraph.com/rss"],
+    ["Decrypt","https://decrypt.co/feed"],
+    ["CryptoSlate","https://cryptoslate.com/feed/"],
+    ["NewsBTC","https://www.newsbtc.com/feed/"]
+  ];
+
+  const clean=s=>(s||"").toLowerCase()
+    .replace(/<[^>]*>/g," ")
+    .replace(/[^a-z0-9$ ]/g," ")
+    .replace(/\s+/g," ").trim();
+
+  const assetName=clean(name);
+  const assetSymbol=clean(symbol).replace(/^\$/,"");
+
+  // Common project-specific aliases. These are deliberately limited to
+  // identity terms for the clicked asset, not broad crypto keywords.
+  const aliases={
+    xrp:["ripple","xrp ledger","xrpl"],
+    btc:["bitcoin"],
+    eth:["ethereum","ether"],
+    sol:["solana"],
+    ada:["cardano"],
+    doge:["dogecoin"],
+    dot:["polkadot"],
+    link:["chainlink"],
+    avax:["avalanche"],
+    qnt:["quant"],
+    zec:["zcash"],
+    ondo:["ondo finance"],
+    edel:["edel"]
+  };
+  const terms=[assetName,assetSymbol,...(aliases[assetSymbol]||[])].filter(Boolean);
+
+  const isRelevant=item=>{
+    const hay=clean((item.title||"")+" "+(item.description||"")+" "+(item.content||""));
+    return terms.some(term=>{
+      if(term.length<=3) return new RegExp(`(^|\\s)\\$?${term.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")}(\\s|$)`,"i").test(hay);
+      return hay.includes(term);
+    });
+  };
+
+  const parseFeed=async([source,rss])=>{
+    const endpoint=`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(rss)}`;
+    try{
+      const r=await fetch(endpoint,{cache:"no-store"});
+      if(!r.ok) return [];
+      const d=await r.json();
+      if(d.status!=="ok" || !Array.isArray(d.items)) return [];
+      return d.items.filter(isRelevant).map(a=>({
+        title:a.title||"Untitled",
+        link:a.link||"#",
+        pub:a.pubDate||"",
+        source
+      }));
+    }catch(e){ return []; }
+  };
+
+  const batches=await Promise.all(feeds.map(parseFeed));
+  const all=batches.flat();
+
+  // Deduplicate repeated syndicated headlines.
+  const seen=new Set();
+  const unique=all.filter(a=>{
+    const key=clean(a.title);
+    if(!key || seen.has(key)) return false;
+    seen.add(key); return true;
+  });
+
+  unique.sort((a,b)=>{
+    const ta=Date.parse(a.pub)||0, tb=Date.parse(b.pub)||0;
+    return tb-ta;
+  });
+
+  return unique.slice(0,8);
+}
+
+async function inspect(id){
+  status.textContent="Investigating "+id+"…";
+  document.getElementById("searchResults").innerHTML="";
+  try{
+    let analysis=window.latestScanById?.[id] || null;
+    let c=null,p=null;
+
+    if(location.protocol==="file:"){
+      const [mr,dr]=await Promise.all([
+        fetch("https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids="+encodeURIComponent(id)+"&price_change_percentage=1h,24h,7d"),
+        fetch("https://api.coingecko.com/api/v3/coins/"+encodeURIComponent(id)+"?localization=false&tickers=false&market_data=true&community_data=true&developer_data=true&sparkline=false")
+      ]);
+      if(!mr.ok||!dr.ok)throw Error("Could not load project data.");
+      c=(await mr.json())[0]; p=await dr.json();
+      if(!c)throw Error("Asset not found");
+
+      // Search results don't have an existing scan analysis, so create a clearly
+      // separate baseline analysis. A clicked scan result never gets recomputed.
+      if(!analysis){
+        const hist=JSON.parse(localStorage.getItem("wh_v72_history")||"[]").filter(x=>x.id===id).slice(-100);
+        const avg=a=>a.length?a.reduce((x,y)=>x+y,0)/a.length:0;
+        const sd=a=>{if(a.length<2)return 0;const m=avg(a);return Math.sqrt(avg(a.map(x=>(x-m)**2)))};
+        const z=(v,a)=>{const s=sd(a);return s?(v-avg(a))/s:0};
+        const v=Number(c.total_volume||0),mc=Number(c.market_cap||0),h24=Number(c.price_change_percentage_24h_in_currency||0);
+        const hv=hist.map(x=>x.v),hh=hist.map(x=>x.h24),ht=hist.map(x=>x.mc?x.v/x.mc:NaN).filter(Number.isFinite);
+        const zv=z(v,hv),zp=z(h24,hh),zt=z(mc?v/mc:0,ht);let score=0,signals=[];
+        if(hist.length>=3&&Math.abs(zv)>=2){score+=Math.min(45,Math.round(Math.abs(zv)*10));signals.push(`Volume is ${zv>=0?"+":""}${zv.toFixed(1)}σ vs its own baseline.`)}
+        if(hist.length>=3&&Math.abs(zp)>=2){score+=Math.min(30,Math.round(Math.abs(zp)*8));signals.push(`24h move is ${zp>=0?"+":""}${zp.toFixed(1)}σ vs its own baseline.`)}
+        if(hist.length>=3&&Math.abs(zt)>=2){score+=Math.min(20,Math.round(Math.abs(zt)*6));signals.push(`Turnover is ${zt>=0?"+":""}${zt.toFixed(1)}σ vs its own baseline.`)}
+        if(hist.length<3)signals.push("Baseline is still developing; collect more observations for asset-specific confidence.");
+        analysis={score,signals,baseline_observations:hist.length,classification:score>=75?"HIGH-CONFIDENCE ANOMALY":score>=50?"WORTH INVESTIGATING":score>=30?"EARLY SIGNAL":"BASELINE DEVELOPING",confidence:Math.min(99,Math.max(10,Math.round(20+score*.75)))};
+      }
+    }else{
+      const r=await fetch("/api/asset/"+encodeURIComponent(id));if(!r.ok)throw Error("Asset lookup failed");
+      const d=await r.json();c=d.coin;p=d.project||{};analysis=analysis||d.analysis;
+    }
+
+    const a=analysis||{score:0,signals:["No analysis available."],baseline_observations:0,confidence:0,classification:"UNKNOWN"};
+    const md=p?.market_data||{}, links=p?.links||{}, desc=(p?.description?.en||"").replace(/<[^>]*>/g,"").trim();
+    const rank=c.market_cap_rank||"—", cap=md.market_cap?.usd||c.market_cap, vol=md.total_volume?.usd||c.total_volume;
+    const fmt=n=>typeof n==="number"?new Intl.NumberFormat("en-US",{maximumFractionDigits:n>=1e9?0:n>=1e6?0:2}).format(n):"—";
+    const money=n=>typeof n==="number"?"$"+fmt(n):"—";
+    const verdict=a.score>=90?"🔴 Major anomaly":a.score>=75?"🟠 Strong anomaly":a.score>=50?"🟡 Worth investigating":a.score>=30?"🔵 Early signal":"🟢 Baseline developing";
+    const meaning=a.score>=75?"Multiple independent signals are unusually strong. This is where we investigate the underlying cause rather than treating the score as the explanation.":a.score>=50?"Several signals are outside normal behavior. The next step is determining whether the move is caused by volume, liquidity, arbitrage, wallets, news or another catalyst.":a.score>=30?"The project is behaving differently from its comparison set, but the evidence is not yet strong enough to call a major anomaly.":"No strong anomaly is currently detected; the system will become more confident as it collects history.";
+    const homepage=(links.homepage||[]).find(x=>x)||"";
+    const cats=(p.categories||[]).slice(0,5).join(" · ")||"Not classified";
+
+    out.innerHTML=`<div class="card detail">
+      <button class="back" onclick="document.getElementById('out').innerHTML='';status.textContent='Ready.'">← Back to results</button>
+      <div class="assethead"><div><div class="summary">${c.name} (${c.symbol.toUpperCase()})</div><div class="pill">${verdict}</div></div><div class="assetscore ${a.score>=75?"bad":a.score>=50?"warn":"blue"}">${a.score}/100</div></div>
+      <div class="explain" style="margin-top:14px"><b>Why this alert:</b> ${meaning}</div>
+      <div class="detailgrid">
+        <div>
+          <div class="detailsection"><div class="detailtitle">Alert breakdown</div><div class="sigma-explainer"><b>σ = deviation from normal baseline.</b> Higher absolute values indicate more unusual behavior.</div>${a.signals.map(s=>{
+      const formatSignal=(text)=>{
+        let m=text.match(/^turnover is ([+-]?\d+(?:\.\d+)?)σ across the top 100\.?$/i);
+        if(m)return `<div class="signal"><b>Turnover</b>: ${m[1]}σ vs top 100</div>`;
+        m=text.match(/^1h move is ([+-]?\d+(?:\.\d+)?)σ across the market$/i);
+        if(m)return `<div class="signal"><b>1h Move</b>: ${m[1]}σ vs market</div>`;
+        m=text.match(/^24h move is ([+-]?\d+(?:\.\d+)?)σ across the market$/i);
+        if(m)return `<div class="signal"><b>24h Move</b>: ${m[1]}σ vs market</div>`;
+        m=text.match(/^7d move is ([+-]?\d+(?:\.\d+)?)σ across the market$/i);
+        if(m)return `<div class="signal"><b>7d Move</b>: ${m[1]}σ vs market</div>`;
+        m=text.match(/^volume is ([+-]?\d+(?:\.\d+)?)σ vs its own baseline\.?$/i);
+        if(m)return `<div class="signal"><b>Volume</b>: ${m[1]}σ vs own baseline</div>`;
+        m=text.match(/^Volume is ([+-]?\d+(?:\.\d+)?)σ vs its own baseline\.?$/i);
+        if(m)return `<div class="signal"><b>Volume</b>: ${m[1]}σ vs own baseline</div>`;
+        m=text.match(/^Turnover is ([+-]?\d+(?:\.\d+)?)σ vs its own baseline\.?$/i);
+        if(m)return `<div class="signal"><b>Turnover</b>: ${m[1]}σ vs own baseline</div>`;
+        m=text.match(/^24h move is ([+-]?\d+(?:\.\d+)?)σ vs its own baseline\.?$/i);
+        if(m)return `<div class="signal"><b>24h Move</b>: ${m[1]}σ vs own baseline</div>`;
+        if(/^price\/volume divergence detected$/i.test(text))return `<div class="signal"><b>Price / Volume</b>: divergence detected</div>`;
+        return `<div class="signal">${text}</div>`;
+      };
+      return formatSignal(s);
+    }).join("")}<div class="nextcheck"><b>Next things to check</b><div id="checkResults" class="checkgrid"><div class="checkcard"><div class="checkbody">Loading live supporting data…</div></div></div></div></div>
+          <div class="detailsection" id="newsSection" style="margin-top:14px"><div class="detailtitle">Current news & catalysts <button id="refreshNews" style="float:right;background:#151c27;color:#a99aff;border:1px solid #2b3544;border-radius:8px;padding:5px 9px;font-size:9px;font-weight:800">REFRESH</button> <span id="newsAssetLabel" style="font-size:10px;color:#69e6a3;font-weight:800;margin-left:8px">LIVE</span></div><div id="newsList"><div class="projectdesc">Loading current headlines…</div></div></div>
+          <div class="detailsection" style="margin-top:14px"><div class="detailtitle">About the project</div><div class="projectdesc">${desc||"No project description available from the data provider."}</div>${homepage?`<div class="tap" style="margin-top:12px"><a href="${homepage}" target="_blank" style="color:#9d8cff">Project website ↗</a></div>`:""}</div>
+        </div>
+        <div>
+          <div class="detailsection"><div class="detailtitle">Project snapshot</div>
+            <div class="statrow"><span>Market cap rank</span><span>#${rank}</span></div>
+            <div class="statrow"><span>Market cap</span><span>${money(cap)}</span></div>
+            <div class="statrow"><span>24h volume</span><span>${money(vol)}</span></div>
+            <div class="statrow"><span>Category</span><span>${cats}</span></div>
+            <div class="statrow"><span>Confidence</span><span>${a.confidence}%</span></div>
+            <div class="statrow"><span>Observations</span><span>${a.baseline_observations}</span></div>
+          </div>
+        </div>
+      </div>
+    </div>`;
+    status.textContent="Investigation complete.";
+    const news=await loadNews(c.name,c.symbol);
+    const refreshNews=document.getElementById("refreshNews");
+    if(refreshNews) refreshNews.onclick=async()=>{
+      refreshNews.textContent="LOADING…";
+      const fresh=await loadNews(c.name,c.symbol);
+      renderNewsItems(fresh,c);
+      refreshNews.textContent="REFRESH";
+    }; const newsLabel=document.getElementById("newsAssetLabel"); if(newsLabel) newsLabel.textContent=`LIVE · ${c.symbol}`;
+    const newsList=document.getElementById("newsList");
+    renderNewsItems(news,c);
+    loadChecks(c.id);
+    window.scrollTo({top:document.getElementById("out").offsetTop-20,behavior:"smooth"});
+  }catch(e){status.textContent="Investigation failed: "+e.message}
+}
+async function scan(){
+  const btn=document.querySelector(".btn"); if(btn)btn.disabled=true;
+  status.textContent="Connecting to market data…";
+  try{
+    let d;
+    if(location.protocol==="file:"){
+      let coins,lastErr;
+      const urls=[
+        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=1h,24h,7d",
+        "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=24h"
+      ];
+      for(const url of urls){try{const ctl=new AbortController(),timer=setTimeout(()=>ctl.abort(),15000);const r=await fetch(url,{signal:ctl.signal,cache:"no-store"});clearTimeout(timer);if(!r.ok)throw Error("market API returned "+r.status);coins=await r.json();if(Array.isArray(coins)&&coins.length)break}catch(e){lastErr=e}}
+      if(!coins?.length)throw Error("Market data could not be reached. "+(lastErr?.message||"Please try again."));
+      status.textContent=`Analyzing ${coins.length} assets…`;
+      const key="wh_v72_history";let hist=JSON.parse(localStorage.getItem(key)||"[]"),now=Date.now(),byId=new Map();
+      for(const h of hist){if(!byId.has(h.id))byId.set(h.id,[]);byId.get(h.id).push(h)}
+      const avg=a=>a.length?a.reduce((x,y)=>x+y,0)/a.length:0;
+      const sd=a=>{if(a.length<2)return 0;const m=avg(a);return Math.sqrt(avg(a.map(x=>(x-m)**2)))};
+      const zz=(v,a)=>{const s=sd(a);return s?(v-avg(a))/s:0};
+      const vals=coins.map(c=>({c,v:+(c.total_volume||0),mc:+(c.market_cap||0),h1:+(c.price_change_percentage_1h_in_currency||0),h24:+(c.price_change_percentage_24h_in_currency||0),h7:+(c.price_change_percentage_7d_in_currency||0)}));
+      const ratios=vals.map(x=>x.mc?x.v/x.mc:0),h1s=vals.map(x=>x.h1),h24s=vals.map(x=>x.h24),h7s=vals.map(x=>x.h7);
+      const results=vals.map(x=>{
+        const prior=(byId.get(x.c.id)||[]).slice(-100),hv=prior.map(h=>h.v),hh=prior.map(h=>h.h24);
+        const zt=zz(x.mc?x.v/x.mc:0,ratios),z1=zz(x.h1,h1s),z24=zz(x.h24,h24s),z7=zz(x.h7,h7s),zhv=zz(x.v,hv),zh24=zz(x.h24,hh);
+        let score=0,signals=[];
+        if(Math.abs(zt)>=2){score+=Math.min(30,Math.round(Math.abs(zt)*8));signals.push(`turnover is ${zt>=0?"+":""}${zt.toFixed(1)}σ across the top 100`)}
+        if(Math.abs(z1)>=2){score+=Math.min(18,Math.round(Math.abs(z1)*6));signals.push(`1h move is ${z1>=0?"+":""}${z1.toFixed(1)}σ across the market`)}
+        if(Math.abs(z24)>=2){score+=Math.min(18,Math.round(Math.abs(z24)*6));signals.push(`24h move is ${z24>=0?"+":""}${z24.toFixed(1)}σ across the market`)}
+        if(Math.abs(z7)>=2){score+=Math.min(12,Math.round(Math.abs(z7)*4));signals.push(`7d move is ${z7>=0?"+":""}${z7.toFixed(1)}σ across the market`)}
+        if(prior.length>=3&&Math.abs(zhv)>=2){score+=Math.min(25,Math.round(Math.abs(zhv)*7));signals.push(`volume is ${zhv>=0?"+":""}${zhv.toFixed(1)}σ vs its own baseline`)}
+        if(prior.length>=3&&Math.abs(zh24)>=2){score+=Math.min(15,Math.round(Math.abs(zh24)*5));signals.push(`24h move is ${zh24>=0?"+":""}${zh24.toFixed(1)}σ vs its own baseline`)}
+        if(prior.length>=3&&Math.abs(zhv)>=2&&Math.abs(zh24)<1){score+=12;signals.push("price/volume divergence detected")}
+        score=Math.min(100,score);
+        return {coin:x.c,analysis:{score,signals:signals.length?signals:["No strong anomaly signal yet."],baseline_observations:prior.length,classification:score>=75?"HIGH-CONFIDENCE ANOMALY":score>=50?"WORTH INVESTIGATING":score>=30?"EARLY SIGNAL":"NORMAL / BASELINE",confidence:Math.min(99,Math.max(15,Math.round(30+score*.65)))}}
+      }).sort((a,b)=>b.analysis.score-a.analysis.score);
+      hist=hist.concat(vals.map(x=>({id:x.c.id,t:now,v:x.v,h24:x.h24,mc:x.mc}))).slice(-20000);
+      try{localStorage.setItem(key,JSON.stringify(hist))}catch(e){}
+      d={count:results.length,results};
+    }else{
+      const ctl=new AbortController(),timer=setTimeout(()=>ctl.abort(),30000);
+      const r=await fetch("/api/scan",{signal:ctl.signal,cache:"no-store"});clearTimeout(timer);
+      if(!r.ok)throw Error("Backend scan failed ("+r.status+").");d=await r.json();
+    }
+    window.latestScanById=Object.fromEntries(d.results.map(x=>[x.coin.id,x.analysis]));
+    const major=d.results.filter(x=>x.analysis.score>=75).length,investigate=d.results.filter(x=>x.analysis.score>=50).length,early=d.results.filter(x=>x.analysis.score>=30&&x.analysis.score<50).length;
+    let h=`<div class="card"><div class="summary summary-stack"><div><span class="summary-number">${major}</span> major anomalies</div><div><span class="summary-number">${investigate}</span> worth investigating</div><div><span class="summary-number">${early}</span> early signals</div></div><div class="sub">${d.count} assets scanned · live market signals work immediately; historical signals strengthen with each scan</div></div><div class="card">`;
+    d.results.slice(0,20).forEach((x,i)=>{const a=x.analysis,c=x.coin,cl=a.score>=75?"bad":a.score>=50?"warn":"blue",verdict=a.score>=90?"🔴 Major anomaly":a.score>=75?"🟠 Strong anomaly":a.score>=50?"🟡 Worth investigating":a.score>=30?"🔵 Early signal":"🟢 Normal",explanation=a.score>=75?"Multiple independent signals are unusually strong. This deserves immediate investigation of venue, liquidity, wallet and catalyst data.":a.score>=50?"Several signals are outside normal market behavior. The next step is to identify whether the move is driven by volume, liquidity, arbitrage, wallets or a catalyst.":a.score>=30?"The asset is behaving differently from the broader market, but the evidence is not strong enough yet to call it a major anomaly.":"No strong anomaly signal is currently present.";h+=`<div class="item clickable" onclick="inspect('${c.id.replace(/'/g,"")}')"><div class="rank">${i+1}</div><div><div class="name">${c.name} (${c.symbol.toUpperCase()})</div><div class="reason">${a.signals.join(" · ")}</div>${a.signals.some(s=>s.includes("σ"))?`<div class="sigma-help">σ = standard deviation; it shows how unusual the move is versus the comparison baseline.</div>`:""}<div class="explain">${verdict} — ${explanation}</div><div class="meta">${a.classification} · ${a.confidence}% confidence · ${a.baseline_observations} historical observations</div><div class="tap">Tap to investigate →</div></div><div class="score ${cl}">${a.score}/100</div></div>`});
+    out.innerHTML=h+"</div>";status.textContent="Scan complete.";
+  }catch(e){console.error(e);status.textContent=e.name==="AbortError"?"Scan timed out. Try again.":"Scan stopped: "+e.message}
+  finally{if(btn)btn.disabled=false}
+}</script></body></html>

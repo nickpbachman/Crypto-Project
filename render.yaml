@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: whats-happening
+    runtime: docker
+    plan: starter
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/health
+    envVars:
+      - key: WH_DB
+        value: /app/data/market.db
+      - key: ALERT_SCAN_INTERVAL
+        value: "300"
+      - key: VAPID_PUBLIC_KEY
+        sync: false
+      - key: VAPID_PRIVATE_KEY
+        sync: false
+      - key: VAPID_SUBJECT
+        sync: false
