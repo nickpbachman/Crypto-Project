@@ -2,8 +2,8 @@ import asyncio, json, os, time, hashlib
 from pathlib import Path
 import httpx
 from pywebpush import webpush, WebPushException
-from .store import conn
-from .engine import analyze
+from store import conn
+from engine import analyze
 
 SCAN_INTERVAL = int(os.getenv('ALERT_SCAN_INTERVAL', '300'))
 COINGECKO = 'https://api.coingecko.com/api/v3/coins/markets'
